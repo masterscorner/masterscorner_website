@@ -24,8 +24,8 @@ export function connect(url: string, max = 1): Connection {
  */
 export function asPerson<T>(db: DB, personId: string | null, fn: (tx: Tx) => Promise<T>): Promise<T> {
 	return db.transaction().execute(async (tx) => {
-		await sql`select set_config('app.person_id', ${personId ?? ''}, true)`.execute(tx);
-		await sql`set local role app_user`.execute(tx);
+		// One round trip: who is asking, and drop to the app_user role (same as SET LOCAL ROLE).
+		await sql`select set_config('app.person_id', ${personId ?? ''}, true), set_config('role', 'app_user', true)`.execute(tx);
 		return fn(tx);
 	});
 }

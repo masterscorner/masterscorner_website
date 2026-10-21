@@ -1,5 +1,6 @@
 import { sql } from 'kysely';
 import { asPerson, type DB } from '../db-core.ts';
+import { memo } from '../memo.ts';
 
 export interface SearchInput {
 	lat: number;
@@ -92,6 +93,10 @@ export interface ActivityOption {
 }
 
 export function listActivities(db: DB): Promise<ActivityOption[]> {
+	return memo('activities', 600, () => loadActivities(db));
+}
+
+function loadActivities(db: DB): Promise<ActivityOption[]> {
 	return asPerson(db, null, (tx) =>
 		tx
 			.selectFrom('activity_nodes')
@@ -104,6 +109,10 @@ export function listActivities(db: DB): Promise<ActivityOption[]> {
 
 /** How many listed classes teach each category (near a point when given). Real numbers only. */
 export function categoryCounts(db: DB, near?: { lat: number; lng: number; radiusKm?: number }): Promise<Record<string, number>> {
+	return memo(`counts:${near ? `${near.lat},${near.lng},${near.radiusKm ?? 25}` : 'all'}`, 120, () => loadCategoryCounts(db, near));
+}
+
+function loadCategoryCounts(db: DB, near?: { lat: number; lng: number; radiusKm?: number }): Promise<Record<string, number>> {
 	const point = near ? sql`st_setsrid(st_makepoint(${near.lng}, ${near.lat}), 4326)::geography` : null;
 	const radius = (near?.radiusKm ?? 25) * 1000;
 	return asPerson(db, null, async (tx) => {

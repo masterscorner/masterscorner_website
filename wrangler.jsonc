@@ -16,6 +16,8 @@
 		// "console" = test mode: login codes appear only in the Cloudflare logs (npx wrangler tail). Change to "msg91" when SMS is ready.
 		"OTP_SENDER": "console"
 	},
+	// Run the server code next to the database (Supabase, AWS Mumbai) so each database query takes ~1 ms instead of crossing continents.
+	"placement": { "region": "aws:ap-south-1" },
 	"hyperdrive": [
 		{
 			// Create with: npx wrangler hyperdrive create masterscorner-db --connection-string="postgres://..."
