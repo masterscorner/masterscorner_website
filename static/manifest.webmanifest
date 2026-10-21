@@ -1,0 +1,13 @@
+{
+	"name": "MastersCorner",
+	"short_name": "MastersCorner",
+	"description": "Find a class near you. Run your class for free.",
+	"start_url": "/app",
+	"scope": "/",
+	"display": "standalone",
+	"background_color": "#f6f7fb",
+	"theme_color": "#22307a",
+	"icons": [
+		{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+	]
+}

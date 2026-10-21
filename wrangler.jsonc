@@ -1,0 +1,33 @@
+// Cloudflare Workers deployment. Secrets (BETTER_AUTH_SECRET, GOOGLE_CLIENT_SECRET, MSG91_AUTH_KEY)
+// are set with `npx wrangler secret put NAME`, never written here.
+{
+	"name": "masterscorner",
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"compatibility_date": "2026-10-01",
+	"compatibility_flags": ["nodejs_compat"],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	},
+	"vars": {
+		"ORIGIN": "https://masterscorner.in",
+		"OTP_SENDER": "msg91"
+	},
+	"hyperdrive": [
+		{
+			// Create with: npx wrangler hyperdrive create masterscorner-db --connection-string="postgres://..."
+			"binding": "HYPERDRIVE",
+			"id": "REPLACE_WITH_HYPERDRIVE_ID",
+			// Used only by local development (npm run dev); the app itself uses DATABASE_URL locally.
+			"localConnectionString": "postgres://postgres:postgres@127.0.0.1:54329/postgres"
+		}
+	],
+	"r2_buckets": [
+		{
+			// Create with: npx wrangler r2 bucket create masterscorner-photos --location apac
+			"binding": "PHOTOS",
+			"bucket_name": "masterscorner-photos"
+		}
+	],
+	"observability": { "enabled": true }
+}

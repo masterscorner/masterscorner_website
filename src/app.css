@@ -1,0 +1,364 @@
+@import 'tailwindcss';
+
+/* Handwritten accent (used for a few short notes only). */
+@font-face {
+	font-family: 'Caveat';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 600;
+	src: url('@fontsource/caveat/files/caveat-latin-600-normal.woff2') format('woff2');
+}
+
+/* One variable font (Plus Jakarta Sans): Latin always, the rupee sign from latin-ext. Cached after first visit. */
+@font-face {
+	font-family: 'Jakarta';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 200 800;
+	src: url('@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2-variations');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'Jakarta';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 200 800;
+	src: url('@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-ext-wght-normal.woff2') format('woff2-variations');
+	unicode-range: U+20B9;
+}
+
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+@theme {
+	--font-sans: 'Jakarta', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+	--font-display: 'Jakarta', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+	--font-hand: 'Caveat', 'Segoe Print', cursive;
+
+	/* Brand: deep navy and saffron orange (familiar from Indian consumer apps), warm cream pages.
+	   "indigo" names are kept so older pages pick up the new colours: indigo = brand action colour. */
+	--color-navy: #10294a;
+	--color-brand: #e0560c;
+	--color-indigo: #c2470b;
+	--color-indigo-deep: #10294a;
+	--color-indigo-soft: #fff0e4;
+	--color-violet: #f37a2b;
+	--color-haldi: #ffb703;
+	--color-haldi-soft: #fff4d6;
+
+	/* Surfaces and text */
+	--color-chalk: #fbf7f2;
+	--color-surface: #ffffff;
+	--color-raised: #ffffff;
+	--color-ink: #10233f;
+	--color-ink-soft: #5b6475;
+	--color-line: #ece4da;
+
+	/* Status: colour + icon + word, always together */
+	--color-present: #0f8f52;
+	--color-present-soft: #e2f7ec;
+	--color-due: #b45c00;
+	--color-due-soft: #fff0dc;
+	--color-absent: #d93a2f;
+	--color-absent-soft: #fdeceb;
+	--color-whatsapp: #1fa855;
+
+	/* Charts (validated for colour-blind separation on both surfaces) */
+	--color-chart-1: #1f5fa8;
+	--color-chart-2: #e0701e;
+	--color-chart-grid: #f0ebe4;
+	--color-chart-track: color-mix(in oklab, var(--color-chart-1) 24%, var(--color-surface));
+
+	--radius-card: 22px;
+	--radius-pill: 999px;
+	--shadow-card: 0 1px 2px rgb(16 35 63 / 0.04), 0 10px 28px -14px rgb(16 35 63 / 0.2);
+	--shadow-float: 0 2px 6px rgb(16 35 63 / 0.06), 0 24px 48px -20px rgb(16 41 74 / 0.4);
+	--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-navy: #0a1a30;
+		--color-brand: #f0661a;
+		--color-indigo: #ff9a57;
+		--color-indigo-deep: #eef2f8;
+		--color-indigo-soft: #3a2312;
+		--color-haldi-soft: #3a2f10;
+		--color-chalk: #0b1626;
+		--color-surface: #12213a;
+		--color-raised: #172a47;
+		--color-ink: #eef2f8;
+		--color-ink-soft: #a9b6c9;
+		--color-line: #24395a;
+		--color-present: #3ccf87;
+		--color-present-soft: #133826;
+		--color-due: #ffaa4d;
+		--color-due-soft: #3b2a12;
+		--color-absent: #ff6b61;
+		--color-absent-soft: #3d1a19;
+		--color-chart-1: #4f8fd6;
+		--color-chart-2: #d1772a;
+		--color-chart-grid: #1c2f4d;
+		--shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+		--shadow-float: 0 24px 48px -20px rgb(0 0 0 / 0.8);
+		color-scheme: dark;
+	}
+}
+
+@layer base {
+	html {
+		color: var(--color-ink);
+		background: var(--color-chalk);
+		-webkit-text-size-adjust: 100%;
+		-webkit-tap-highlight-color: transparent;
+	}
+	body {
+		font-family: var(--font-sans);
+		font-size: 1rem;
+		line-height: 1.55;
+		min-height: 100dvh;
+	}
+	h1,
+	h2,
+	h3 {
+		font-family: var(--font-display);
+		font-weight: 800;
+		letter-spacing: -0.025em;
+		line-height: 1.15;
+		color: var(--color-indigo-deep);
+		text-wrap: balance;
+	}
+	:focus-visible {
+		outline: 3px solid var(--color-haldi);
+		outline-offset: 2px;
+		border-radius: 8px;
+	}
+	input,
+	select,
+	textarea {
+		font: inherit;
+		color: inherit;
+	}
+	::selection {
+		background: var(--color-haldi-soft);
+	}
+	.tnum {
+		font-variant-numeric: tabular-nums;
+	}
+
+	/* Page change: a quick fade and lift, like a native app. */
+	::view-transition-old(root) {
+		animation: 120ms ease-out both vt-out;
+	}
+	::view-transition-new(root) {
+		animation: 220ms ease-out both vt-in;
+	}
+	@keyframes vt-out {
+		to {
+			opacity: 0;
+		}
+	}
+	@keyframes vt-in {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+}
+
+@layer components {
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		min-height: 50px;
+		padding: 0 1.25rem;
+		border-radius: 14px;
+		font-weight: 700;
+		font-size: 1rem;
+		line-height: 1;
+		border: 1.5px solid transparent;
+		cursor: pointer;
+		text-decoration: none;
+		white-space: nowrap;
+		transition:
+			transform 120ms ease,
+			background-color 160ms ease,
+			box-shadow 160ms ease,
+			border-color 160ms ease;
+	}
+	.btn:active:not(:disabled) {
+		transform: scale(0.97);
+	}
+	.btn-primary {
+		background: linear-gradient(180deg, #f26b1d 0%, var(--color-brand) 100%);
+		color: white;
+		font-weight: 800;
+		box-shadow: 0 6px 18px -8px rgb(224 86 12 / 0.75);
+	}
+	.btn-primary:hover {
+		box-shadow: 0 10px 24px -10px rgb(224 86 12 / 0.9);
+	}
+	.btn-haldi {
+		background: var(--color-haldi);
+		color: #10294a;
+		box-shadow: 0 6px 18px -8px rgb(255 183 3 / 0.8);
+	}
+	.btn-quiet {
+		background: var(--color-surface);
+		color: var(--color-indigo);
+		border-color: var(--color-line);
+	}
+	.btn-quiet:hover {
+		border-color: var(--color-indigo);
+	}
+	.btn-whatsapp {
+		background: var(--color-whatsapp);
+		color: white;
+		box-shadow: 0 6px 18px -8px rgb(31 168 85 / 0.7);
+	}
+	.btn:disabled {
+		opacity: 0.55;
+		cursor: not-allowed;
+	}
+	.field {
+		display: grid;
+		gap: 0.4rem;
+	}
+	.field > span {
+		font-weight: 650;
+		font-size: 0.95rem;
+	}
+	.field small {
+		color: var(--color-ink-soft);
+		font-size: 0.85rem;
+	}
+	.input {
+		width: 100%;
+		min-width: 0;
+		min-height: 50px;
+		padding: 0.65rem 0.95rem;
+		border: 1.5px solid var(--color-line);
+		border-radius: 14px;
+		background: var(--color-surface);
+		transition:
+			border-color 140ms ease,
+			box-shadow 140ms ease;
+	}
+	.input:focus {
+		border-color: var(--color-indigo);
+		outline: none;
+		box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-indigo) 18%, transparent);
+	}
+	.panel {
+		background: var(--color-surface);
+		border: 1px solid var(--color-line);
+		border-radius: var(--radius-card);
+		box-shadow: var(--shadow-card);
+	}
+	.chip {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		min-height: 42px;
+		padding: 0 0.95rem;
+		border-radius: var(--radius-pill);
+		border: 1.5px solid var(--color-line);
+		background: var(--color-surface);
+		font-weight: 650;
+		font-size: 0.95rem;
+		cursor: pointer;
+		white-space: nowrap;
+		flex-shrink: 0;
+		text-decoration: none;
+		color: var(--color-ink);
+		transition:
+			transform 120ms ease,
+			background-color 160ms ease,
+			border-color 160ms ease;
+	}
+	.chip:active {
+		transform: scale(0.96);
+	}
+	.chip[aria-pressed='true'],
+	.chip.on,
+	.chip:has(input:checked) {
+		border-color: var(--color-indigo);
+		background: var(--color-indigo);
+		color: white;
+	}
+	@media (prefers-color-scheme: dark) {
+		.chip[aria-pressed='true'],
+		.chip.on,
+		.chip:has(input:checked) {
+			color: #10233f;
+		}
+	}
+	.chip input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+	.chip:has(input:focus-visible) {
+		outline: 3px solid var(--color-haldi);
+		outline-offset: 2px;
+	}
+	.error-text {
+		color: var(--color-absent);
+		font-weight: 650;
+	}
+	.visually-hidden {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+	/* Horizontal swipe rows */
+	.rail {
+		display: flex;
+		gap: 0.75rem;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		padding-bottom: 0.25rem;
+	}
+	.rail::-webkit-scrollbar {
+		display: none;
+	}
+	.rail > * {
+		scroll-snap-align: start;
+		flex-shrink: 0;
+	}
+	/* Soft colour per activity category; --hue comes from #lib/categories.ts */
+	.tint {
+		background: hsl(var(--hue, 245) 95% 94%);
+	}
+	@media (prefers-color-scheme: dark) {
+		.tint {
+			background: hsl(var(--hue, 245) 35% 20%);
+		}
+	}
+	.hero-bg {
+		background:
+			radial-gradient(60% 80% at 100% 0%, rgb(242 107 29 / 0.35) 0%, transparent 60%),
+			radial-gradient(70% 90% at 0% 100%, rgb(31 95 168 / 0.45) 0%, transparent 65%),
+			linear-gradient(160deg, #0a1a30 0%, #10294a 55%, #173a66 100%);
+		color: white;
+	}
+	.hero-bg h1,
+	.hero-bg h2 {
+		color: white;
+	}
+}
