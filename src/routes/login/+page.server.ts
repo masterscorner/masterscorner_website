@@ -9,7 +9,7 @@ import type { Actions, PageServerLoad } from './$types';
 
 /** Only allow going back to a page on this site after signing in. */
 function safeNext(value: string | null): string {
-	return value && value.startsWith('/') && !value.startsWith('//') ? value : '/app';
+	return value && /^\/(?![\/\\])/.test(value) && !value.startsWith('/login') ? value : '/app';
 }
 
 export const load: PageServerLoad = async ({ locals, url }) => {

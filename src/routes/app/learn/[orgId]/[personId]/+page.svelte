@@ -31,7 +31,7 @@
 <SiteHeader signedIn />
 <main class="mx-auto grid max-w-2xl gap-5 px-4 pt-3 pb-16">
 	<div>
-		<BackLink href="/app" label="My page" />
+		<BackLink href="/app" />
 		<p class="text-sm font-bold text-ink-soft">{v.person.isMe ? 'My class' : v.person.name}</p>
 		<h1 class="text-[1.9rem]">{v.org.name}</h1>
 		<div class="mt-2 flex flex-wrap gap-2">

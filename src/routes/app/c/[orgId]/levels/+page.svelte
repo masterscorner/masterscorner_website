@@ -39,7 +39,7 @@
 
 <svelte:head><title>Levels | {data.org.name}</title></svelte:head>
 
-<BackLink href="/app/c/{data.org.id}/more" label="More" />
+<BackLink href="/app/c/{data.org.id}/more" />
 <h1 class="text-[1.8rem]">Levels</h1>
 <p class="mt-1 text-ink-soft">Belts, grades or levels. Give a student their next level after a grading. Students and parents see it.</p>
 

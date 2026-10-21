@@ -20,7 +20,7 @@
 
 <svelte:head><title>Enquiries | {data.org.name}</title></svelte:head>
 
-<BackLink href="/app/c/{data.org.id}/more" label="More" />
+<BackLink href="/app/c/{data.org.id}/more" />
 <h1 class="text-[1.8rem]">Enquiries</h1>
 <p class="mt-1 text-ink-soft">Questions people sent from your class page. Call or message them, then mark what happened.</p>
 

@@ -68,6 +68,9 @@ test('teacher sets up a class and takes attendance; parent confirms child', asyn
 	await page.getByRole('button', { name: 'Give level' }).first().click();
 	await page.getByRole('button', { name: 'Save', exact: true }).click();
 	await expect(page.getByText(/^Yellow since|^White since/)).toBeVisible();
+	// Back returns to the page you came from (More), not the dashboard.
+	await page.getByRole('link', { name: 'Back' }).click();
+	await expect(page).toHaveURL(/\/more$/);
 	await page.getByRole('link', { name: 'Fees' }).click();
 	await expect(page.getByRole('heading', { name: 'Fees' })).toBeVisible();
 

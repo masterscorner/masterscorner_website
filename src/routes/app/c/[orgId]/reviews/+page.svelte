@@ -12,7 +12,7 @@
 
 <svelte:head><title>Reviews | {data.org.name}</title></svelte:head>
 
-<BackLink href="/app/c/{data.org.id}/more" label="More" />
+<BackLink href="/app/c/{data.org.id}/more" />
 <h1 class="text-[1.8rem]">Reviews</h1>
 <p class="mt-1 text-ink-soft">Only students who came to class can review. You can reply; you cannot delete reviews. Report a review if it is fake or abusive.</p>
 

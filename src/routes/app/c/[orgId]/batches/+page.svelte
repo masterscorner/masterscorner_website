@@ -26,7 +26,7 @@
 
 <svelte:head><title>Batches | {data.org.name}</title></svelte:head>
 
-<BackLink href="/app/c/{data.org.id}/more" label="More" />
+<BackLink href="/app/c/{data.org.id}/more" />
 <div class="flex items-center justify-between gap-3">
 	<h1 class="text-[1.8rem]">Batches</h1>
 	{#if editing !== 'new'}

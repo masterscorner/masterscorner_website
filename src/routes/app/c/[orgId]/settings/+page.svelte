@@ -45,7 +45,7 @@
 
 <svelte:head><title>Class page settings | {data.org.name}</title></svelte:head>
 
-<BackLink href="/app/c/{data.org.id}/more" label="More" />
+<BackLink href="/app/c/{data.org.id}/more" />
 <div class="flex items-center justify-between gap-3">
 	<h1 class="text-[1.8rem]">Class page</h1>
 	<a class="btn btn-quiet min-h-10 px-3 text-sm" href="/c/{s.slug}" target="_blank"><ExternalLink size={16} aria-hidden="true" /> View</a>

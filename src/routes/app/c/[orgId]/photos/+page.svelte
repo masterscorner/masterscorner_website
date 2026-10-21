@@ -24,7 +24,7 @@
 
 <svelte:head><title>Photos | {data.org.name}</title></svelte:head>
 
-<BackLink href="/app/c/{data.org.id}/more" label="More" />
+<BackLink href="/app/c/{data.org.id}/more" />
 <h1 class="text-[1.8rem]">Photos</h1>
 <p class="mt-1 text-ink-soft">Up to 5 photos of your class: the place, equipment, trophies, the teacher. Good photos bring more students.</p>
 

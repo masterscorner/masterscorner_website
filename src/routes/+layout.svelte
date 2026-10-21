@@ -1,9 +1,14 @@
 <script lang="ts">
 	import '../app.css';
-	import { onNavigate } from '$app/navigation';
+	import { afterNavigate, onNavigate } from '$app/navigation';
+	import { markInside } from '#lib/nav-history.ts';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
+
+	afterNavigate(({ from }) => {
+		if (from) markInside();
+	});
 
 	// Smooth page changes where the browser supports it (Chrome on Android does).
 	onNavigate((navigation) => {

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	import { enhance } from '$app/forms';
+	import BackLink from '#lib/components/BackLink.svelte';
 	import Check from '@lucide/svelte/icons/check';
 	import CheckCheck from '@lucide/svelte/icons/check-check';
 	import CloudOff from '@lucide/svelte/icons/cloud-off';
@@ -29,6 +30,7 @@
 
 <svelte:head><title>Attendance | {data.roll.batch_name}</title></svelte:head>
 
+<BackLink href="/app/c/{data.org.id}" />
 <p class="text-sm font-bold text-ink-soft">{shortDate(data.roll.on_date)}</p>
 <h1 class="text-[1.9rem]">{data.roll.batch_name}</h1>
 

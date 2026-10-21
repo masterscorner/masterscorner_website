@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import CalendarCheck from '@lucide/svelte/icons/calendar-check';
-	import ChevronLeft from '@lucide/svelte/icons/chevron-left';
+	import House from '@lucide/svelte/icons/house';
 	import Ellipsis from '@lucide/svelte/icons/ellipsis';
 	import ChartLine from '@lucide/svelte/icons/chart-line';
 	import IndianRupee from '@lucide/svelte/icons/indian-rupee';
@@ -26,7 +26,7 @@
 <div class="min-h-dvh pb-24 lg:pb-0 lg:pl-60">
 	<header class="top">
 		<div class="mx-auto flex max-w-3xl items-center gap-3 px-3 py-2.5">
-			<a href="/app" class="back" aria-label="Back to my page"><ChevronLeft size={22} /></a>
+			<a href="/app" class="back" aria-label="My page" title="My page"><House size={21} /></a>
 			<span class="org" aria-hidden="true">{initials(data.org.name)}</span>
 			<span class="grid min-w-0">
 				<strong class="truncate text-[1.05rem] leading-tight text-indigo-deep">{data.org.name}</strong>

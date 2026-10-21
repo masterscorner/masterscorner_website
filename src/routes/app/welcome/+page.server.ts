@@ -35,6 +35,6 @@ export const actions: Actions = {
 			return fail(500, { error: 'Could not save. Please try again.', values });
 		}
 		const next = url.searchParams.get('next');
-		redirect(303, next && next.startsWith('/app') ? next : '/app');
+		redirect(303, next && /^\/(?![\/\\])/.test(next) && !next.startsWith('/login') ? next : '/app');
 	}
 };

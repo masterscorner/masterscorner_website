@@ -6,7 +6,8 @@
 	import Logo from './Logo.svelte';
 
 	// onHero is accepted for older pages; the bar looks the same everywhere now.
-	let { signedIn = false }: { signedIn?: boolean; onHero?: boolean } = $props();
+	let props: { signedIn?: boolean; onHero?: boolean } = $props();
+	const signedIn = $derived(props.signedIn || Boolean((page.data as { headerSignedIn?: boolean }).headerSignedIn));
 	const city = $derived((page.data as { headerCity?: string }).headerCity ?? '');
 	const path = $derived(page.url.pathname);
 	const links = [
@@ -39,7 +40,7 @@
 				<ChevronDown size={15} aria-hidden="true" class="hidden sm:block" />
 			</a>
 			{#if !(path === '/login' || (signedIn && path === '/app'))}
-				<a href={signedIn ? '/app' : '/login'} class="account">
+				<a href={signedIn ? '/app' : path === '/' ? '/login' : `/login?next=${encodeURIComponent(path + page.url.search)}`} class="account">
 					<UserRound size={17} aria-hidden="true" class="sm:hidden" />
 					<span class="hidden sm:inline">{signedIn ? 'My page' : 'Login'}</span>
 				</a>
