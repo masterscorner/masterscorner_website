@@ -28,6 +28,7 @@ export interface SearchHit {
 	online: boolean;
 	teaching_languages: string[];
 	cover_key: string | null;
+	is_sample: boolean;
 	activities: { name: string; emoji: string | null; cat: string }[];
 	level_colors: string[];
 }
@@ -49,7 +50,7 @@ export function searchClasses(db: DB, input: SearchInput): Promise<SearchHit[]> 
 			select l.id, l.slug, l.name, l.locality, l.city,
 				round(st_distance(l.location, ${point}))::int as distance_m,
 				l.rating_avg, l.rating_count, l.fee_min_paise, l.fee_max_paise,
-				l.women_only, l.online, l.teaching_languages, l.cover_key,
+				l.women_only, l.online, l.teaching_languages, l.cover_key, l.is_sample,
 				coalesce((
 					select json_agg(json_build_object('name', a.name, 'emoji', a.emoji,
 						'cat', coalesce(g.slug, p.slug, a.slug)) order by a.sort)

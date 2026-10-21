@@ -50,6 +50,9 @@
 
 <main class="mx-auto max-w-3xl px-4 pb-28">
 	<article class="panel relative z-10 -mt-14 grid gap-3 p-5">
+		{#if p.is_sample}
+			<p class="rounded-xl bg-haldi-soft px-3 py-2 text-sm font-semibold text-due" role="note">Sample listing: an example to show how MastersCorner works. This is not a real class.</p>
+		{/if}
 		<p class="flex flex-wrap gap-2">
 			{#each p.activities as a (a.slug)}
 				<a href="/search?activity={a.slug}" class="act">{a.name}</a>

@@ -13,6 +13,7 @@ export interface PersonsTable {
 	phone_e164: string | null;
 	birth_date: string | null;
 	is_minor: Generated<boolean>;
+	is_sample: Generated<boolean>;
 	created_by: string | null;
 	created_at: Generated<Timestamp>;
 	updated_at: Generated<Timestamp>;
@@ -49,6 +50,7 @@ export interface OrgsTable {
 	teaching_languages: Generated<string[]>;
 	age_groups: Generated<string[]>;
 	women_only: Generated<boolean>;
+	is_sample: Generated<boolean>;
 	offers_trial: Generated<boolean>;
 	online: Generated<boolean>;
 	fee_min_paise: number | null;
@@ -355,6 +357,7 @@ export interface ListingsView {
 	rating_avg: string | null;
 	rating_count: number;
 	level_system_id: number | null;
+	is_sample: boolean;
 	branch_id: string;
 	address_line: string;
 	locality: string | null;

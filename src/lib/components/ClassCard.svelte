@@ -20,6 +20,7 @@
 		activities: { name: string; emoji: string | null; cat: string }[];
 		level_colors: string[];
 		cover_key?: string | null;
+		is_sample?: boolean;
 	}
 	let { hit, compact = false }: { hit: Hit; compact?: boolean } = $props();
 	const fallback = $derived(categoryPhoto(hit.activities[0]?.cat));
@@ -41,6 +42,7 @@
 			/>
 		{/if}
 		<span class="dist tnum"><MapPin size={13} aria-hidden="true" />{distance(hit.distance_m)}</span>
+		{#if hit.is_sample}<span class="sample" title="Example listing to show how MastersCorner works">Sample</span>{/if}
 		<div class="stripe"><LevelStripe colors={hit.level_colors} height={5} /></div>
 	</div>
 	<div class="body">
@@ -56,7 +58,7 @@
 		<p class="where"><span class="truncate">{hit.locality ? `${hit.locality}, ` : ''}{hit.city}</span></p>
 		<div class="foot">
 			{#if hit.fee_min_paise != null}
-				<span class="price tnum">{rupees(hit.fee_min_paise)}<small> onwards</small></span>
+				<span class="price tnum">{rupees(hit.fee_min_paise)}<small>&nbsp;onwards</small></span>
 			{:else}
 				<span class="price muted">Ask for fees</span>
 			{/if}
@@ -122,6 +124,18 @@
 		background: rgb(255 255 255 / 0.95);
 		color: #10233f;
 		box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+	}
+	.sample {
+		position: absolute;
+		right: 0.7rem;
+		top: 0.7rem;
+		padding: 0.2rem 0.55rem;
+		border-radius: 999px;
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.02em;
+		background: #10294a;
+		color: white;
 	}
 	.stripe {
 		position: absolute;

@@ -12,6 +12,7 @@ export interface ClassProfile {
 	teaching_languages: string[];
 	age_groups: string[];
 	women_only: boolean;
+	is_sample: boolean;
 	online: boolean;
 	fee_min_paise: number | null;
 	fee_max_paise: number | null;
@@ -38,7 +39,7 @@ export function classProfile(db: DB, slug: string): Promise<ClassProfile | null>
 	return asPerson(db, null, async (tx) => {
 		const { rows } = await sql<ClassProfile>`
 			select l.id, l.slug, l.name, l.about, l.phone_e164, l.whatsapp_e164, l.email,
-				l.teaching_languages, l.age_groups, l.women_only, l.online,
+				l.teaching_languages, l.age_groups, l.women_only, l.online, l.is_sample,
 				l.fee_min_paise, l.fee_max_paise, l.rating_avg, l.rating_count,
 				l.address_line, l.locality, l.city, l.state, l.postal_code, l.location_precise,
 				st_y(l.location::geometry) as lat, st_x(l.location::geometry) as lng,

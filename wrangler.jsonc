@@ -4,30 +4,37 @@
 	"name": "masterscorner",
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"compatibility_date": "2026-10-01",
-	"compatibility_flags": ["nodejs_compat"],
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
 	"assets": {
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
 	},
 	"vars": {
-		"ORIGIN": "https://masterscorner.in",
-		"OTP_SENDER": "msg91"
+		"ORIGIN": "https://masterscorner.masterscorner-in.workers.dev",
+		// "console" = test mode: login codes appear only in the Cloudflare logs (npx wrangler tail). Change to "msg91" when SMS is ready.
+		"OTP_SENDER": "console"
 	},
 	"hyperdrive": [
 		{
 			// Create with: npx wrangler hyperdrive create masterscorner-db --connection-string="postgres://..."
 			"binding": "HYPERDRIVE",
-			"id": "REPLACE_WITH_HYPERDRIVE_ID",
+			"id": "321219ad070b4c7688b9a83bf2ae878c",
 			// Used only by local development (npm run dev); the app itself uses DATABASE_URL locally.
 			"localConnectionString": "postgres://postgres:postgres@127.0.0.1:54329/postgres"
 		}
 	],
-	"r2_buckets": [
-		{
-			// Create with: npx wrangler r2 bucket create masterscorner-photos --location apac
-			"binding": "PHOTOS",
-			"bucket_name": "masterscorner-photos"
-		}
-	],
-	"observability": { "enabled": true }
+	// Photo storage (R2) is switched off until R2 is enabled in the Cloudflare dashboard.
+	// To switch it on: remove the "//" at the start of the next lines, then npm run deploy.
+	// "r2_buckets": [
+	// 	{
+	// 		// Create with: npx wrangler r2 bucket create masterscorner-photos --location apac
+	// 		"binding": "PHOTOS",
+	// 		"bucket_name": "masterscorner-photos"
+	// 	}
+	// ],
+	"observability": {
+		"enabled": true
+	}
 }

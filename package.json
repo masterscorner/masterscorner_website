@@ -19,7 +19,9 @@
 		"test:e2e": "playwright test",
 		"budget": "node scripts/bundle-budget.ts",
 		"deploy": "vite build && wrangler deploy",
-		"photos": "node scripts/download-photos.ts"
+		"photos": "node scripts/download-photos.ts",
+		"sample:add": "node scripts/sample-data.ts add",
+		"sample:remove": "node scripts/sample-data.ts remove"
 	},
 	"imports": {
 		"#lib": "./src/lib/index.ts",
